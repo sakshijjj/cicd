@@ -2,19 +2,30 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Pulling code ') {
             steps {
-                echo 'Building..'
+                '''
+                
+                rm -rf *
+                git clone https://github.com/sakshijjj/cicd
+
+                '''
             }
         }
-        stage('Test') {
+        stage('Building image ') {
             steps {
-                echo 'Testing..'
+                '''
+                cd cicd
+                mvn clean package install > /dev/null
+                sudo docker build -t sakshijoshi522/test-cicd:$BUILD_ID .
+
+                '''
+
             }
         }
-        stage('Deploy') {
+        stage('Pushing') {
             steps {
-                echo 'Deploying....'
+                sudo docker push sakshijoshi522/test-cicd:$BUILD_ID
             }
         }
     }
