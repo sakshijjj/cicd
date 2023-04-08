@@ -25,7 +25,9 @@ pipeline {
         }
         stage('Pushing') {
             steps {
+                '''
                 sudo docker push sakshijoshi522/test-cicd:$BUILD_ID
+                '''
             }
         }
     }
