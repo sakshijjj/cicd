@@ -4,10 +4,9 @@ pipeline {
     stages {
         stage('Pulling code ') {
             steps {
-                '''
-                
-                rm -rf *
-                git clone https://github.com/sakshijjj/cicd
+                '''  
+              sh rm -rf *
+              sh  git clone https://github.com/sakshijjj/cicd
 
                 '''
             }
@@ -15,9 +14,9 @@ pipeline {
         stage('Building image ') {
             steps {
                 '''
-                cd cicd
-                mvn clean package install > /dev/null
-                sudo docker build -t sakshijoshi522/test-cicd:$BUILD_ID .
+               sh  cd cicd
+               sh mvn clean package install > /dev/null
+               sh  sudo docker build -t sakshijoshi522/test-cicd:$BUILD_ID .
 
                 '''
 
@@ -26,7 +25,7 @@ pipeline {
         stage('Pushing') {
             steps {
                 '''
-                sudo docker push sakshijoshi522/test-cicd:$BUILD_ID
+              sh sudo docker push sakshijoshi522/test-cicd:$BUILD_ID
                 '''
             }
         }
