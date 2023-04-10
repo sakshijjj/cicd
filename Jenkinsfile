@@ -3,10 +3,9 @@ pipeline {
     stages {
         stage('Pulling code ') {
             steps {
-                '''  
-                echo 'sakshi'
+                ''' 
                rm -rf *
-               
+               git clone https://github.com/sakshijjj/cicd
                '''
             }
         }
