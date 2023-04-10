@@ -4,6 +4,7 @@ pipeline {
         stage('Pulling code ') {
             steps {
                 '''  
+                echo 'sakshi'
                rm -rf *
                
                '''
