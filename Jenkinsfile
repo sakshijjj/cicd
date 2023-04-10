@@ -5,7 +5,7 @@ pipeline {
             steps {
                 ''' 
                rm -rf *
-               git clone https://github.com/sakshijjj/cicd
+               git 'https://github.com/sakshijjj/cicd'
                '''
             }
         }
