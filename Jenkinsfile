@@ -4,7 +4,7 @@ pipeline {
         stage('Pulling code ') {
             steps {
                sh 'rm -rf *'
-               git clone 'git@github.com:sakshijjj/cicd.git'
+               git 'https://github.com/sakshijjj/cicd'
             }
         }
         stage('Building image ') {
