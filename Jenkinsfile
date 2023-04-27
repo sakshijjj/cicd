@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Pulling code ') {
             steps {
-               sh rm -rf *
+               sh 'rm -rf *'
                git 'https://github.com/sakshijjj/cicd'
                
             }
@@ -11,7 +11,7 @@ pipeline {
         stage('Building image ') {
             steps {
                 
-               sh cd cicd
+               sh 'cd cicd'
                sh 'mvn clean package install > /dev/null'
                sh 'udo docker build -t sakshijoshi522/test-cicd:$BUILD_ID'.
              
