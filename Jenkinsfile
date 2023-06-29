@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Pulling code ') {
             steps {
-               sh 'rm -rf *'
+              // sh 'rm -rf *'
                git 'https://github.com/sakshijjj/cicd'
             }
         }
