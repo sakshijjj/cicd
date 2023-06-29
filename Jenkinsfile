@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Pulling code ') {
             steps {
-              // sh 'rm -rf *'
-               git 'https://github.com/sakshijjj/cicd'
+               sh 'rm -rf *'
+               git clone 'https://github.com/sakshijjj/cicd'
             }
         }
         stage('Building image ') {
