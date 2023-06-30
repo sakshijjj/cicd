@@ -1,24 +1,22 @@
 pipeline {
     agent any
     stages {
-        stage('Pulling code ') {
+        stage('build') {
             steps {
-               sh 'rm -rf *'
-               git clone https://github.com/sakshijjj/cicd
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/sakshijjj/cicd.git'
+                sh 'ls -ltrh '
             }
-        }
+        }    
         stage('Building image ') {
             steps {
-               sh 'echo entring this pass or not'
-               sh 'cd cicd'
-               sh 'mvn clean package install > /dev/null'
-               sh 'sudo docker build -t sakshijoshi522/test-cicd:$BUILD_ID'  
+               sh ' mvn clean package install '
+               sh ' docker build -t sakshijoshi522/test-cicd:$BUILD_ID . '  
             }
         }
-        stage('Pushing') {
+        stage('pusing to dockerhub ') {
             steps {
-           sh 'sudo docker push sakshijoshi522/test-cicd:$BUILD_ID'   
+               sh 'docker push sakshijoshi522/test-cicd:$BUILD_ID '
             }
         }
-    }
-}
+     }
+}    
